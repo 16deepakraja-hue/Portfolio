@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSAR Handling Walkthrough — Art. 12–22</title>
+</head>
+<body>
+<div class="ss-container" id="app"></div>
+<script src="../../js/sim-shell.js"></script>
+<script>
+SimShell.init({
+  title: 'DSAR Handling Walkthrough',
+  article: 'Articles 12–22',
+  sources: [
+    { label: 'ICO — Right of access (subject access requests) guidance', href: '#' },
+    { label: 'ICO — How to recognise and handle a SAR', href: '#' },
+    { label: 'EDPB Guidelines 01/2022 on data subject rights — right of access', href: '#' }
+  ],
+  artifact: { label: 'SAR response template pack (PDF)', href: '#' }
+});
+
+const scenarios = [
+  {
+    id: 1, category: 'SAR Identification', difficulty: 'Easy',
+    title: 'Recognising a Valid SAR',
+    desc: 'A HealthBridge patient emails support@healthbridge.co.uk saying: "I want to know what information you hold about me and how you are using it." The email is not formal and does not use the words "subject access request." Does this constitute a valid SAR under Art. 15?',
+    options: [
+      { text: 'No — it must use the words "subject access request" or reference Art. 15 to be valid', correct: false },
+      { text: 'Yes — a SAR does not need to be formal or reference any specific legislation; the intent is clear', correct: true },
+      { text: 'No — it must be submitted via the official DSR form on the website', correct: false },
+      { text: 'Only if accompanied by proof of identity', correct: false }
+    ],
+    explanation: 'Under GDPR and ICO guidance, a SAR can be made in any form — verbally, via email, social media, or letter — and does not need to reference Art. 15 or use formal language. The obligation triggers from when the organisation understands what is being asked. The 1-month clock starts from receipt.',
+    hint: 'Does GDPR impose any formal requirements on how a data subject must phrase their request?',
+    article: 'Article 15, ICO SAR Guidance'
+  },
+  {
+    id: 2, category: 'Response Timeline', difficulty: 'Medium',
+    title: 'SAR Deadline Calculation',
+    desc: 'HealthBridge receives a SAR on 14 January 2025. The request requires searching records across 3 internal systems and 2 third-party processors. What is the standard response deadline, and under what circumstances can it be extended?',
+    options: [
+      { text: 'Response due by 14 February. No extension is possible.', correct: false },
+      { text: 'Response due by 14 February. Extension to 14 April possible for complex or numerous requests, with notification within the first month.', correct: true },
+      { text: 'Response due within 30 working days regardless of complexity.', correct: false },
+      { text: 'Response due within 72 hours — same as breach notification.', correct: false }
+    ],
+    explanation: 'Art. 12(3) requires response without undue delay and within 1 calendar month (14 February). Where requests are complex or numerous, Art. 12(3) allows a 2-month extension (to 14 April), but the data subject must be notified of the delay and reason within the original 1-month period. Complexity of searching multiple systems can justify extension.',
+    hint: 'Art. 12(3) — what are the two possible response timeframes and when can you use the longer one?',
+    article: 'Article 12(3)'
+  },
+  {
+    id: 3, category: 'Exemptions', difficulty: 'Hard',
+    title: 'Legal Privilege Exemption',
+    desc: 'A patient subject to a personal injury claim against HealthBridge submits a SAR. The responsive data includes communications between HealthBridge\'s legal team and external solicitors about the claim. Must HealthBridge disclose these legally privileged documents?',
+    options: [
+      { text: 'Yes — all personal data must be disclosed regardless of privilege', correct: false },
+      { text: 'No — legally privileged communications are exempt from disclosure under Schedule 2, Part 1, Para 19 of the DPA 2018', correct: true },
+      { text: 'Only disclose the patient\'s personal data within the legal documents, not the legal advice itself', correct: false },
+      { text: 'Seek ICO guidance before responding', correct: false }
+    ],
+    explanation: 'The DPA 2018, Schedule 2, Part 1, Para 19 provides an exemption for information protected by legal professional privilege (or, in Scotland, confidentiality of communications). This allows HealthBridge to withhold communications between the organisation and its legal advisors made in the context of actual or anticipated litigation. The exemption must be applied proportionately — only legally privileged content is withheld; non-privileged personal data must still be provided.',
+    hint: 'DPA 2018 Schedule 2 contains specific exemptions from the right of access — which one covers legal advice?',
+    article: 'DPA 2018 Sch. 2, Para 19; Article 23 GDPR'
+  },
+  {
+    id: 4, category: 'Identity Verification', difficulty: 'Medium',
+    title: 'Identity Verification Threshold',
+    desc: 'A SAR arrives from an email address HealthBridge does not recognise, claiming to be from a registered patient. HealthBridge holds highly sensitive health records. What is the correct approach to identity verification?',
+    options: [
+      { text: 'Refuse the request until the individual provides certified ID documents', correct: false },
+      { text: 'Request only the minimum information reasonably necessary to confirm identity — such as date of birth and postcode — without demanding disproportionate proof', correct: true },
+      { text: 'Accept the request at face value and respond immediately', correct: false },
+      { text: 'Delay the response indefinitely pending identity verification', correct: false }
+    ],
+    explanation: 'Art. 12(6) allows requesting additional information to confirm the data subject\'s identity where there is reasonable doubt. However, ICO guidance states verification must be proportionate and use the minimum necessary information. Demanding excessive proof (e.g., certified passport copies for a routine SAR) is disproportionate. For health data, asking for date of birth, registered email, and postcode is appropriate. The 1-month clock is paused while awaiting identity confirmation.',
+    hint: 'What does ICO guidance say about proportionality when verifying identity for a SAR?',
+    article: 'Article 12(6), ICO SAR Guidance'
+  },
+  {
+    id: 5, category: 'Third-Party Data', difficulty: 'Hard',
+    title: 'Third-Party Data Within a SAR Response',
+    desc: 'A patient\'s SAR reveals that their records contain comments made by a HealthBridge nurse about a colleague\'s behaviour. Disclosing this would identify the colleague. How should HealthBridge handle this?',
+    options: [
+      { text: 'Disclose everything — the SAR right overrides third-party privacy interests', correct: false },
+      { text: 'Redact the colleague\'s identifying information before disclosure, balancing the patient\'s access right against the third party\'s privacy interests', correct: true },
+      { text: 'Refuse the entire SAR response because it involves third-party data', correct: false },
+      { text: 'Seek the colleague\'s consent before disclosing anything', correct: false }
+    ],
+    explanation: 'Art. 15 must be balanced against the rights of third parties (Art. 12(4) and DPA 2018 s.40). Where a SAR response would identify a third party, organisations should redact identifying details unless: (a) the third party consents, or (b) it is reasonable to disclose without consent considering the circumstances. Refusing the entire SAR purely because it contains third-party data is incorrect — redaction is the proportionate solution.',
+    hint: 'Art. 15 is not absolute — DPA 2018 s.40 allows withholding third-party information. What is the proportionate response?',
+    article: 'Article 15, DPA 2018 s.40'
+  },
+  {
+    id: 6, category: 'Erasure Rights', difficulty: 'Medium',
+    title: 'Right to Erasure vs. Legal Hold',
+    desc: 'A former HealthBridge patient requests erasure of all their data under Art. 17. HealthBridge is currently involved in a personal injury claim brought by this patient, requiring retention of clinical records. How should HealthBridge respond?',
+    options: [
+      { text: 'Erase all data immediately — Art. 17 is absolute', correct: false },
+      { text: 'Refuse erasure citing Art. 17(3)(e) — retention necessary for establishing, exercising, or defending legal claims', correct: true },
+      { text: 'Erase marketing data but retain clinical records under Art. 17(3)(b)', correct: false },
+      { text: 'Pause all processing and await ICO guidance', correct: false }
+    ],
+    explanation: 'Art. 17(3)(e) explicitly provides that the right to erasure does not apply where processing is necessary "for the establishment, exercise or defence of legal claims." With active litigation, clinical records must be preserved as potential evidence. HealthBridge should respond within 1 month, explain the exemption, inform the data subject of their right to complain to the ICO, and restrict processing of non-litigation data where possible.',
+    hint: 'Art. 17(3) lists exceptions to the right to erasure — which sub-paragraph covers legal proceedings?',
+    article: 'Article 17(3)(e)'
+  },
+  {
+    id: 7, category: 'Manifestly Unfounded', difficulty: 'Hard',
+    title: 'Refusing a Vexatious Request',
+    desc: 'Over 6 weeks, the same individual submits 14 identical SARs to HealthBridge, each requesting the same data already provided. Can HealthBridge refuse or charge a fee?',
+    options: [
+      { text: 'No — all SARs must be processed free of charge regardless of frequency', correct: false },
+      { text: 'Yes — Art. 12(5) allows charging a reasonable fee or refusing manifestly unfounded or excessive repetitive requests, with documented justification', correct: true },
+      { text: 'Yes — but only after the ICO grants permission to refuse', correct: false },
+      { text: 'No — refuse to respond but do not notify the data subject', correct: false }
+    ],
+    explanation: 'Art. 12(5) allows organisations to charge a reasonable fee or refuse to act on requests that are "manifestly unfounded or excessive," particularly due to their repetitive character. 14 identical requests in 6 weeks, already responded to, clearly qualifies. HealthBridge must: (1) notify the data subject it is refusing and why, (2) inform them of their right to complain to the ICO or seek judicial remedy, (3) document the decision in its SAR log. The burden of proof is on HealthBridge.',
+    hint: 'Art. 12(5) — what does "manifestly unfounded or excessive" mean for repetitive requests?',
+    article: 'Article 12(5)'
+  },
+  {
+    id: 8, category: 'Rectification', difficulty: 'Easy',
+    title: 'Right to Rectification Response',
+    desc: 'A patient notifies HealthBridge that their recorded date of birth is incorrect in the system. They request correction under Art. 16. HealthBridge has 4 weeks remaining in its response window. What is the correct action?',
+    options: [
+      { text: 'Investigate, correct the date of birth in all relevant systems, notify any processors who were given the incorrect data, and confirm correction to the patient in writing', correct: true },
+      { text: 'Add a note to the file flagging the disputed information but do not change the record', correct: false },
+      { text: 'Request medical evidence proving the correct date of birth before making any changes', correct: false },
+      { text: 'Refer the patient to the GP practice that originally supplied the data', correct: false }
+    ],
+    explanation: 'Art. 16 gives data subjects the right to have inaccurate personal data rectified without undue delay. HealthBridge must: (1) verify and correct the record, (2) notify all recipients of the incorrect data under Art. 19 (including processors), (3) confirm the correction to the data subject in writing. A date of birth is a factual, verifiable data point — no special evidence threshold applies beyond reasonable verification.',
+    hint: 'Art. 16 + Art. 19 — what must the controller do after rectifying data?',
+    article: 'Articles 16, 19'
+  }
+];
+
+let current = 0, answered = [], selectedOpt = null;
+
+function render() {
+  const s = scenarios[current];
+  const isA = answered[current] !== undefined;
+  const cc = answered.filter((a, i) => scenarios[i].options[a]?.correct).length;
+  const ac = answered.filter(a => a !== undefined).length;
+
+  let dots = '<div class="ss-progress">';
+  scenarios.forEach((_, i) => {
+    dots += `<div class="ss-progress-dot ${answered[i] !== undefined ? 'done' : i === current ? 'active' : ''}"></div>`;
+  });
+  dots += '</div>';
+
+  let h = `
+    <div class="ss-hero">
+      <div class="ss-hero-eyebrow">DSAR Handling Walkthrough</div>
+      <h2>Data Subject Rights Management</h2>
+      <p>Process real-world data subject access requests, erasure demands, and rectification claims — applying GDPR timelines, exemptions, and ICO guidance.</p>
+    </div>
+    <div class="ss-stats">
+      <div class="ss-stat"><div class="ss-stat-val">${current+1}/${scenarios.length}</div><div class="ss-stat-lbl">Request</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${cc}</div><div class="ss-stat-lbl">Correct</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${ac}</div><div class="ss-stat-lbl">Processed</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${SimShell.score}</div><div class="ss-stat-lbl">Score</div></div>
+    </div>
+    ${dots}
+    <div class="ss-card">
+      <div class="ss-card-hd">
+        <h3><i class="fa-solid fa-user-shield" style="color:#2563eb"></i> Request ${s.id}: ${s.title}</h3>
+        <div style="display:flex;gap:0.5rem">
+          <span class="ss-badge ss-badge-blue">${s.category}</span>
+          <span class="ss-badge ${s.difficulty==='Easy'?'ss-badge-green':s.difficulty==='Medium'?'ss-badge-amber':'ss-badge-red'}">${s.difficulty}</span>
+        </div>
+      </div>
+      <div class="ss-card-bd">
+        <p style="margin-bottom:1rem;font-size:0.95rem;line-height:1.7">${s.desc}</p>
+        <div style="font-size:0.75rem;color:#64748b;margin-bottom:0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em">Select the correct response:</div>
+        <div class="ss-radio-group">`;
+
+  s.options.forEach((o, i) => {
+    let cls = '';
+    if (isA) { cls = o.correct ? 'correct' : (answered[current] === i && !o.correct ? 'incorrect' : ''); }
+    h += `<label class="ss-radio ${cls}" ${isA ? '' : `onclick="selectOption(${i})"`}>
+      <input type="radio" name="q" ${isA ? 'disabled' : ''} ${answered[current] === i ? 'checked' : ''}> ${o.text}
+    </label>`;
+  });
+
+  h += `</div>
+    <div class="ss-hint ${SimShell.mode==='learning'&&!isA?'visible':''}"><i class="fa-solid fa-lightbulb" style="color:#d97706;margin-right:0.4rem"></i> <strong>Hint:</strong> ${s.hint}</div>`;
+
+  if (isA) {
+    const ok = s.options[answered[current]]?.correct;
+    h += `<div class="ss-feedback ${ok ? 'ss-feedback-correct' : 'ss-feedback-incorrect'}">
+      <strong>${ok ? '✓ Correct!' : '✗ Incorrect'}</strong><br>
+      ${s.explanation}<br>
+      <span style="font-size:0.8rem;opacity:0.8;margin-top:0.5rem;display:block">Reference: <strong>${s.article}</strong></span>
+    </div>`;
+  }
+
+  h += `</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:1rem">
+      <button class="ss-btn ss-btn-outline" ${current===0?'disabled':''} onclick="nav(-1)"><i class="fa-solid fa-arrow-left"></i> Previous</button>`;
+
+  if (!isA) {
+    h += `<button class="ss-btn ss-btn-primary" id="submitBtn" disabled onclick="submitAnswer()">Submit Response</button>`;
+  } else if (current < scenarios.length - 1) {
+    h += `<button class="ss-btn ss-btn-primary" onclick="nav(1)">Next Request <i class="fa-solid fa-arrow-right"></i></button>`;
+  } else {
+    h += `<button class="ss-btn ss-btn-success" onclick="showResults()"><i class="fa-solid fa-trophy"></i> View Results</button>`;
+  }
+
+  h += '</div>';
+  document.getElementById('app').innerHTML = h;
+}
+
+function selectOption(i) {
+  if (answered[current] !== undefined) return;
+  selectedOpt = i;
+  document.querySelectorAll('.ss-radio').forEach((r, x) => {
+    r.classList.toggle('selected', x === i);
+    r.querySelector('input').checked = x === i;
+  });
+  const btn = document.getElementById('submitBtn');
+  if (btn) btn.disabled = false;
+}
+
+function submitAnswer() {
+  if (selectedOpt === null) return;
+  answered[current] = selectedOpt;
+  SimShell.updateScore(scenarios[current].options[selectedOpt].correct ? 6 : -3);
+  selectedOpt = null;
+  render();
+}
+
+function nav(d) {
+  current = Math.max(0, Math.min(scenarios.length - 1, current + d));
+  selectedOpt = null;
+  render();
+}
+
+function showResults() {
+  const cc = answered.filter((a, i) => scenarios[i].options[a]?.correct).length;
+  const pct = Math.round((cc / scenarios.length) * 100);
+  const grade = pct >= 90 ? 'DSR Operations Lead' : pct >= 70 ? 'Privacy Rights Analyst' : pct >= 50 ? 'Junior DSR Handler' : 'Needs Training';
+  document.getElementById('app').innerHTML = `
+    <div class="ss-hero">
+      <div class="ss-hero-eyebrow">Assessment Complete</div>
+      <h2>DSAR Handling — Results</h2>
+      <p>Review your data subject rights handling performance.</p>
+    </div>
+    <div class="ss-stats">
+      <div class="ss-stat"><div class="ss-stat-val" style="color:#059669">${cc}/${scenarios.length}</div><div class="ss-stat-lbl">Correct</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${pct}%</div><div class="ss-stat-lbl">Accuracy</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${SimShell.score}</div><div class="ss-stat-lbl">Score</div></div>
+      <div class="ss-stat"><div class="ss-stat-val" style="font-size:1rem">${grade}</div><div class="ss-stat-lbl">Level Assessed</div></div>
+    </div>
+    <div class="ss-card">
+      <div class="ss-card-hd"><h3><i class="fa-solid fa-clipboard-check" style="color:#059669"></i> Request Breakdown</h3></div>
+      <div class="ss-card-bd">
+        ${scenarios.map((s, i) => {
+          const ok = s.options[answered[i]]?.correct;
+          return `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid #f1f5f9;font-size:0.9rem">
+            <div><strong>${s.id}.</strong> ${s.title} <span class="ss-badge ss-badge-blue" style="margin-left:0.5rem">${s.category}</span></div>
+            <span class="ss-badge ${ok ? 'ss-badge-green' : 'ss-badge-red'}">${ok ? 'Correct' : 'Incorrect'}</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1rem">
+      <button class="ss-btn ss-btn-outline" onclick="location.reload()"><i class="fa-solid fa-rotate-right"></i> Retry</button>
+      <a href="../../portfolio.html" class="ss-btn ss-btn-primary" style="text-decoration:none"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+    </div>`;
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deepak N | Privacy & GDPR Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #122040;
+      --navy-light: #1c3060;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --gold-pale: #f5e9c8;
+      --cream: #faf8f4;
+      --white: #ffffff;
+      --slate: #4a5568;
+      --slate-light: #718096;
+      --border: #e2ddd5;
+      --green: #2d7a4f;
+      --green-bg: #edf7f2;
+      --amber: #b45309;
+      --amber-bg: #fef3c7;
+      --red: #c0392b;
+      --red-bg: #fdecea;
+      --blue: #1a56a0;
+      --blue-bg: #ebf2fb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--navy);
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px 24px;
+      font-weight: 500;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 1px 8px rgba(10, 22, 40, 0.07);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--navy);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Libre Baskerville', serif;
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-logo-sub {
+      font-size: 10px;
+      color: var(--slate-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--slate);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+      border-bottom-color: var(--gold);
+    }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--gold-light) !important;
+      padding: 8px 20px !important;
+      border-radius: 3px !important;
+      border-bottom: none !important;
+      transition: background 0.2s, transform 0.15s !important;
+      display: inline-flex !important;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-cta:hover {
+      background: var(--navy-light) !important;
+      color: var(--gold-light) !important;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 80px 48px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 480px;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 30%, rgba(201, 168, 76, 0.06) 100%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent 60%);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      color: var(--gold-light);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .hero-tag span {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 44px;
+      color: var(--white);
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-desc {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 15px;
+      line-height: 1.75;
+      max-width: 540px;
+      margin-bottom: 32px;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 12px 28px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 12px 28px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* Hero Stats Card */
+    .hero-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 32px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card-title {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-family: 'Libre Baskerville', serif;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .stat-value span {
+      font-size: 11px;
+      color: var(--gold);
+      margin-left: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+
+    .progress-mini {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .progress-mini-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      transition: width 1s ease;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 48px;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-eyebrow::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 32px;
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      color: var(--slate);
+      font-size: 15px;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--slate);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .about-text p strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .about-highlight {
+      background: var(--navy);
+      color: var(--gold-light);
+      padding: 20px 24px;
+      border-radius: 4px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-top: 24px;
+      border-left: 3px solid var(--gold);
+    }
+
+    .about-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .meta-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+    .meta-card-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate-light);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .meta-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .meta-tag {
+      background: var(--navy);
+      color: var(--gold-light);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: transform 0.15s, opacity 0.15s;
+      border: 1px solid;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .social-linkedin {
+      background: #0077b5;
+      color: white;
+      border-color: #0077b5;
+    }
+
+    .social-github {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .project-skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-skills-row .ps-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--slate-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 4px;
+      align-self: center;
+    }
+
+    .project-skills-row .ps-tag {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      color: var(--slate);
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* ── INTERACTIVE WALKTHROUGHS ── */
+    #walkthroughs {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .wt-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .wt-card:hover {
+      box-shadow: 0 6px 24px rgba(10, 22, 40, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .wt-preview {
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 30px;
+      position: relative;
+    }
+
+    .wt-preview span {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .wt-body {
+      padding: 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wt-article {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .wt-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .wt-desc {
+      font-size: 12px;
+      color: var(--slate);
+      line-height: 1.6;
+      margin-bottom: 10px;
+      flex: 1;
+    }
+
+    .wt-disclaimer {
+      font-size: 10.5px;
+      color: var(--slate-light);
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .wt-open {
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .wt-open:hover {
+      background: var(--navy);
+      color: var(--gold-light);
+      border-color: var(--navy);
+    }
+
+    /* In-progress (not yet accessible) walkthrough cards */
+    .wt-card.in-progress {
+      cursor: default;
+    }
+
+    .wt-card.in-progress:hover {
+      box-shadow: none;
+      transform: none;
+    }
+
+    .wt-card.in-progress .wt-preview {
+      opacity: 0.55;
+    }
+
+    .wt-preview-badge {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: var(--amber-bg);
+      color: var(--amber);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .wt-status {
+      display: inline-block;
+      margin-left: 8px;
+      background: var(--amber-bg);
+      color: var(--amber);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      vertical-align: middle;
+    }
+
+    .wt-inprogress {
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate-light);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 3px;
+      background: var(--cream);
+      cursor: default;
+    }
+
+    @media (max-width: 900px) {
+      .wt-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── PROJECTS ── */
+    #projects {
+      background: var(--cream);
+    }
+
+    .projects-filter {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 7px 16px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--slate);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--navy);
+      color: var(--gold-light);
+      border-color: var(--navy);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 6px 24px rgba(10, 22, 40, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .project-card-top {
+      background: var(--navy);
+      padding: 20px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .project-number {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 28px;
+      color: rgba(255, 255, 255, 0.12);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .project-status-badge {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .status-complete {
+      background: #4ade80;
+      color: #052e16;
+    }
+
+    .status-active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .status-pending {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .project-card-body {
+      padding: 20px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-category {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      font-size: 12px;
+      color: var(--slate);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .project-deliverables {
+      margin-bottom: 16px;
+    }
+
+    .deliverable-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate-light);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .deliverable-list {
+      list-style: none;
+    }
+
+    .deliverable-list li {
+      font-size: 11px;
+      color: var(--slate);
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .deliverable-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .project-footer {
+      border-top: 1px solid var(--border);
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-articles {
+      font-size: 10px;
+      color: var(--slate-light);
+      letter-spacing: 0.05em;
+    }
+
+    .project-articles strong {
+      color: var(--navy);
+    }
+
+    .project-link {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s;
+    }
+
+    .project-link:hover {
+      color: var(--gold);
+    }
+
+    /* ── UPDATE LOG ── */
+    #updates {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .updates-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 64px;
+    }
+
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .timeline-dot {
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      border: 2px solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
+      background: var(--white);
+    }
+
+    .dot-complete {
+      border-color: #4ade80;
+      color: #16a34a;
+    }
+
+    .dot-active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--navy) !important;
+    }
+
+    .dot-pending {
+      border-color: var(--border);
+      color: var(--slate-light);
+    }
+
+    .timeline-content {
+      flex: 1;
+      padding-top: 4px;
+    }
+
+    .timeline-date {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate-light);
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 12px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .tag-complete {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .tag-active {
+      background: var(--amber-bg);
+      color: var(--amber);
+    }
+
+    .tag-upcoming {
+      background: var(--blue-bg);
+      color: var(--blue);
+    }
+
+    /* Sidebar */
+    .updates-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 22px;
+    }
+
+    .sidebar-card-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gdpr-article-list {
+      list-style: none;
+    }
+
+    .gdpr-article-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .gdpr-article-list li:last-child {
+      border-bottom: none;
+    }
+
+    .article-num {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .article-name {
+      color: var(--slate);
+      flex: 1;
+      margin: 0 10px;
+    }
+
+    .article-check {
+      color: var(--slate-light);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .next-steps {
+      list-style: none;
+    }
+
+    .next-steps li {
+      display: flex;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--slate);
+      align-items: flex-start;
+    }
+
+    .next-steps li:last-child {
+      border-bottom: none;
+    }
+
+    .next-step-num {
+      width: 20px;
+      height: 20px;
+      background: var(--navy);
+      color: var(--gold);
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 48px;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .footer-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 48px 24px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        display: none;
+      }
+
+      .section {
+        padding: 48px 24px;
+      }
+
+      .about-grid,
+      .updates-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer {
+        padding: 40px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+
+    /* Animate on load */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-tag,
+    .hero h1,
+    .hero-name,
+    .hero-desc,
+    .hero-badges,
+    .hero-links {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      animation-delay: 0.1s;
+    }
+
+    .hero-name {
+      animation-delay: 0.2s;
+    }
+
+    .hero-desc {
+      animation-delay: 0.3s;
+    }
+
+    .hero-badges {
+      animation-delay: 0.4s;
+    }
+
+    .hero-links {
+      animation-delay: 0.5s;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">Deepak N &nbsp;·&nbsp; Junior Legal Counsel → Privacy Analyst &nbsp;·&nbsp; GDPR & UK GDPR
+    &nbsp;·&nbsp; Chennai, India</div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-mark">DN</div>
+      <div>
+        <div class="nav-logo-text">Deepak N</div>
+        <div class="nav-logo-sub">Privacy & Legal Portfolio</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#walkthroughs">Walkthroughs</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#updates">Progress</a></li>
+      <li><a href="assets/resume/Deepak_N_Privacy_Resume.pdf" download class="nav-cta" aria-label="Download Resume as PDF"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Download Resume</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag"><span></span> Actively Building · Updated Weekly</div>
+        <h1>Privacy &amp; GDPR<br><em>Portfolio</em></h1>
+        <div class="hero-name">Deepak N — Corporate Law → Data Protection</div>
+        <p class="hero-desc">
+          B.A.LL.B. (Hons.) graduate with hands-on experience drafting Data Processing Agreements, advising on
+          Standard Contractual Clauses, and authoring a GDPR-compliant privacy policy at Teceze. This portfolio
+          documents a structured, self-led programme of GDPR / UK GDPR work products. All scenarios use a fictional
+          UK telehealth company for learning purposes.
+        </p>
+        <div class="hero-badges">
+          <span class="badge">UK GDPR</span>
+          <span class="badge">DPA Drafting</span>
+          <span class="badge">Data Mapping</span>
+          <span class="badge">ROPA</span>
+          <span class="badge">SCCs & Transfers</span>
+          <span class="badge">Controller-Processor</span>
+        </div>
+        <div class="hero-links">
+          <a href="#projects" class="btn-primary">View Projects →</a>
+          <a href="assets/resume/Deepak_N_Privacy_Resume.pdf" download class="btn-secondary" aria-label="Download Resume as PDF"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Download Resume</a>
+          <a href="https://linkedin.com/in/deepak-n-399711298" target="_blank" class="btn-secondary">LinkedIn
+            Profile</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-title">Portfolio Progress</div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Live Walkthroughs</div>
+          </div>
+          <div class="stat-value">1<span>/ 3</span></div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Projects In Progress</div>
+            <div class="progress-mini">
+              <div class="progress-mini-fill" style="width:12%"></div>
+            </div>
+          </div>
+          <div class="stat-value">1<span>/ 8</span></div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Currently Working</div>
+          </div>
+          <div class="stat-value" style="font-size:14px">Data Mapping<span>Art. 30</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">About Me</div>
+        <h2 class="section-title">Deepak N — Junior Legal Counsel Transitioning into Privacy</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I am <strong>Deepak N</strong>, a B.A.LL.B. (Hons.) graduate from SRM School of Law, Chennai, with legal
+            experience spanning contract management, data privacy, and GDPR compliance. I am currently <strong>actively
+              exploring roles in Data Privacy and Privacy Operations</strong>.</p>
+          <p>My previous experience as <strong>Junior Legal Counsel at Teceze Consultancy Services</strong> included
+            independently authoring a GDPR-compliant Data Privacy Policy, drafting and reviewing Data Processing
+            Agreements, and advising on controller-processor obligations, Standard Contractual Clauses (SCCs), and
+            cross-border data transfer mechanisms under GDPR and UK GDPR.</p>
+          <p>This portfolio bridges my legal and privacy background into <strong>hands-on privacy operations
+              work</strong> — the data mapping, ROPA management, vendor risk review, and gap analysis that privacy
+            analysts perform daily inside in-house privacy teams.</p>
+          <p><strong>Why I'm transitioning:</strong> Drafting DPAs and reviewing SCCs at Teceze is what first pulled me
+            toward privacy operations. I realised I wanted to move from advising on agreements to actually
+            operationalising them — building the registers, assessments, and workflows that sit behind the clauses.
+            This portfolio is how I'm bridging that gap, one work product at a time.</p>
+          <div class="about-highlight">"I have drafted real DPAs, advised on SCCs, and built a company's data privacy
+            policy from scratch. This portfolio shows what I can do operationally."</div>
+        </div>
+        <div class="about-meta">
+          <div class="meta-card">
+            <div class="meta-card-label">Privacy & Legal Skills</div>
+            <div class="meta-tag-list">
+              <span class="meta-tag">GDPR & UK GDPR</span>
+              <span class="meta-tag">DPA Drafting</span>
+              <span class="meta-tag">ROPA</span>
+              <span class="meta-tag">SCCs & Transfers</span>
+              <span class="meta-tag">Lawful Basis</span>
+              <span class="meta-tag">DSR Handling</span>
+              <span class="meta-tag">DPIA</span>
+              <span class="meta-tag">Contract Review</span>
+            </div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-card-label">Background</div>
+            <div style="font-size:13px; color:var(--slate); line-height:1.85;">
+              🎓 B.A.LL.B. (Hons.) — SRM School of Law, Chennai (2024)<br>
+              ⚖️ Ex Junior Legal Counsel — Teceze Consultancy Services<br>
+              📄 Ex QC Reviewer — Quislex LPO, Hyderabad<br>
+              🏛️ Ex Advocate — District Court, Villupuram<br>
+              📍 Chennai, Tamil Nadu | Open to remote / hybrid roles<br>
+              🟢 <strong style="color:var(--green);">Actively looking for Data Privacy roles</strong><br>
+              🎯 Target role: Privacy Analyst / Privacy Associate / DPA Specialist
+            </div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-card-label">Connect With Me</div>
+            <div style="font-size:12px; color:var(--slate); margin-bottom:10px;">
+              📧 16deepakraja@gmail.com &nbsp;·&nbsp; 📱 +91 6379 470 754
+            </div>
+            <div class="social-links">
+              <a href="https://linkedin.com/in/deepak-n-399711298" target="_blank" class="social-btn social-linkedin">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+                LinkedIn
+              </a>
+              <a href="#" class="social-btn social-github">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- INTERACTIVE WALKTHROUGHS -->
+  <section id="walkthroughs">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">Hands-on</div>
+        <h2 class="section-title">Interactive Walkthroughs</h2>
+        <p class="section-desc">Self-built, browser-based learning exercises that work through real GDPR decisions on a
+          fictional UK telehealth scenario. Personal learning tools — not production software.</p>
+      </div>
+      <div class="wt-grid">
+
+        <div class="wt-card">
+          <div class="wt-preview" aria-hidden="true">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Preview image to add</span>
+          </div>
+          <div class="wt-body">
+            <div class="wt-article">Article 30</div>
+            <div class="wt-title">Data Mapping Walkthrough</div>
+            <div class="wt-desc">Work through 8 stakeholder interviews, classify the data, and build an Article 30
+              record for HealthBridge.</div>
+            <div class="wt-disclaimer">Personal learning exercise · fictional scenario · not a production tool.</div>
+            <a href="simulations/data-mapping/index.html" class="wt-open">Open Walkthrough →</a>
+          </div>
+        </div>
+
+        <div class="wt-card in-progress">
+          <div class="wt-preview" aria-hidden="true">
+            <i class="fa-solid fa-building-shield"></i>
+            <span class="wt-preview-badge">In Progress</span>
+            <span>Preview image to add</span>
+          </div>
+          <div class="wt-body">
+            <div class="wt-article">Article 28 <span class="wt-status">In Progress</span></div>
+            <div class="wt-title">Vendor Due Diligence Worksheet</div>
+            <div class="wt-desc">Assess processor contracts, DPAs, transfers, and sub-processing across HealthBridge's
+              vendors against Article 28.</div>
+            <div class="wt-disclaimer">Personal learning exercise · fictional scenario · not a production tool.</div>
+            <span class="wt-inprogress" aria-disabled="true">In Progress</span>
+          </div>
+        </div>
+
+        <div class="wt-card in-progress">
+          <div class="wt-preview" aria-hidden="true">
+            <i class="fa-solid fa-user-shield"></i>
+            <span class="wt-preview-badge">In Progress</span>
+            <span>Preview image to add</span>
+          </div>
+          <div class="wt-body">
+            <div class="wt-article">Articles 12–22 <span class="wt-status">In Progress</span></div>
+            <div class="wt-title">DSAR Handling Walkthrough</div>
+            <div class="wt-desc">Recognise, scope, and respond to subject access and erasure requests within the
+              statutory timelines.</div>
+            <div class="wt-disclaimer">Personal learning exercise · fictional scenario · not a production tool.</div>
+            <span class="wt-inprogress" aria-disabled="true">In Progress</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">Portfolio</div>
+        <h2 class="section-title">GDPR Work Products</h2>
+        <p class="section-desc">Eight focused GDPR / UK GDPR work products, built around HealthBridge Solutions Ltd. —
+          a fictional UK telehealth company used for learning purposes.</p>
+      </div>
+
+      <div class="projects-filter">
+        <button class="filter-btn active" onclick="filterCards('all', this)">All Work</button>
+        <button class="filter-btn" onclick="filterCards('complete', this)">Complete</button>
+        <button class="filter-btn" onclick="filterCards('active', this)">In Progress</button>
+        <button class="filter-btn" onclick="filterCards('planned', this)">Planned</button>
+      </div>
+
+      <div class="projects-grid" id="projectGrid">
+
+        <!-- P1: Data Mapping & Data Inventory -->
+        <div class="project-card" data-status="active">
+          <div class="project-card-top">
+            <div class="project-number">01</div>
+            <span class="project-status-badge status-active">In Progress</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-category">Foundation</div>
+            <div class="project-title">Data Mapping &amp; Data Inventory</div>
+            <div class="project-desc">A practical Article 30 data-mapping exercise for a fictional UK telehealth SME
+              (87 employees, special-category health data). Forms the foundation for ROPA, DPIA, and vendor work.</div>
+            <div class="project-deliverables">
+              <div class="deliverable-label">Deliverables</div>
+              <ul class="deliverable-list">
+                <li>Data Inventory Register (Excel, 23 records)</li>
+                <li>Data-flow diagram (draw.io, exported PDF)</li>
+                <li>2-page Risk &amp; Gap Memo to DPO</li>
+              </ul>
+            </div>
+            <div class="project-skills-row">
+              <span class="ps-label">Skills:</span>
+              <span class="ps-tag">Data Mapping</span>
+              <span class="ps-tag">ROPA</span>
+              <span class="ps-tag">Lawful Basis</span>
+              <span class="ps-tag">Gap Analysis</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-articles"><strong>Articles:</strong> 5, 6, 30</div>
+            <a href="#" class="project-link">View Progress →</a>
+          </div>
+        </div>
+
+        <!-- P2: DPA Review & Vendor Due Diligence Pack -->
+        <div class="project-card" data-status="planned">
+          <div class="project-card-top">
+            <div class="project-number">02</div>
+            <span class="project-status-badge status-pending">Planned</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-category">Vendors</div>
+            <div class="project-title">DPA Review &amp; Vendor Due Diligence Pack</div>
+            <div class="project-desc">Reviewing processor contracts and building a vendor due-diligence pack for
+              HealthBridge's third parties, applying the same Article 28 checks I used drafting DPAs at Teceze.</div>
+            <div class="project-deliverables">
+              <div class="deliverable-label">Planned Deliverables</div>
+              <ul class="deliverable-list">
+                <li>DPA review checklist (PDF)</li>
+                <li>Vendor due-diligence questionnaire (Excel)</li>
+                <li>Processor risk summary memo (PDF)</li>
+              </ul>
+            </div>
+            <div class="project-skills-row">
+              <span class="ps-label">Skills:</span>
+              <span class="ps-tag">DPA Drafting</span>
+              <span class="ps-tag">Art. 28</span>
+              <span class="ps-tag">Vendor Review</span>
+              <span class="ps-tag">Contract Review</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-articles"><strong>Article:</strong> 28</div>
+            <span class="project-link" style="color:var(--slate-light);cursor:default;">Planned</span>
+          </div>
+        </div>
+
+        <!-- P3: Cross-Border Transfers — TIA + SCCs -->
+        <div class="project-card" data-status="planned">
+          <div class="project-card-top">
+            <div class="project-number">03</div>
+            <span class="project-status-badge status-pending">Planned</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-category">Transfers</div>
+            <div class="project-title">Cross-Border Transfers — TIA + SCCs</div>
+            <div class="project-desc">Transfer Impact Assessment and SCC mapping for HealthBridge's US-based processors —
+              extending the cross-border transfer advice I gave at Teceze into a documented assessment.</div>
+            <div class="project-deliverables">
+              <div class="deliverable-label">Planned Deliverables</div>
+              <ul class="deliverable-list">
+                <li>Transfer Impact Assessment (PDF)</li>
+                <li>SCC module-mapping table (Excel)</li>
+                <li>Transfer risk note (PDF)</li>
+              </ul>
+            </div>
+            <div class="project-skills-row">
+              <span class="ps-label">Skills:</span>
+              <span class="ps-tag">SCCs &amp; Transfers</span>
+              <span class="ps-tag">TIA</span>
+              <span class="ps-tag">Schrems II</span>
+              <span class="ps-tag">Contract Review</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-articles"><strong>Articles:</strong> 44, 46, 49</div>
+            <span class="project-link" style="color:var(--slate-light);cursor:default;">Planned</span>
+          </div>
+        </div>
+
+        <!-- P4: ROPA Register — Controller & Processor -->
+        <div class="project-card" data-status="planned">
+          <div class="project-card-top">
+            <div class="project-number">04</div>
+            <span class="project-status-badge status-pending">Planned</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-category">Records</div>
+            <div class="project-title">ROPA Register — Controller &amp; Processor</div>
+            <div class="project-desc">Article 30 Records of Processing Activities for HealthBridge, in both controller
+              and processor formats, built directly from the completed data inventory.</div>
+            <div class="project-deliverables">
+              <div class="deliverable-label">Planned Deliverables</div>
+              <ul class="deliverable-list">
+                <li>Controller ROPA (Excel)</li>
+                <li>Processor ROPA (Excel)</li>
+                <li>ROPA maintenance note (PDF)</li>
+              </ul>
+            </div>
+            <div class="project-skills-row">
+              <span class="ps-label">Skills:</span>
+              <span class="ps-tag">ROPA</span>
+              <span class="ps-tag">Art. 30</span>
+              <span class="ps-tag">Data Mapping</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-articles"><strong>Article:</strong> 30</div>
+            <span class="project-link" style="color:var(--slate-light);cursor:default;">Planned</span>
+          </div>
+        </div>
+
+        <!-- P5: DPIA — Telehealth Consultation Service -->
+        <div class="project-card" data-status="planned">
+          <div class="project-card-top">
+            <div class="project-number">05</div>
+            <span class="project-status-badge status-pending">Planned</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-category">Risk</div>
+            <div class="project-title">DPIA — Telehealth Consultation Service</div>
+            <div class="project-desc">A full Data Protection Impact Assessment for HealthBridge's video consultation
+              service, which processes special-category health data at scale and meets the Article 35 threshold.</div>
+            <div class="project-deliverables">
+              <div class="deliverable-label">Planned Deliverables</div>
+              <ul class="deliverable-list">
+                <li>DPIA screening checklist (PDF)</li>
+                <li>Full DPIA report (PDF)</li>
+                <li>Risk register (Excel)</li>
+              </ul>
+            </div>
+            <div class="project-skills-row">
+              <span class="ps-label">Skills:</span>
+              <span class="ps-tag">DPIA</span>
+              <span class="ps-tag">Art. 35</span>
+              <span class="ps-tag">Risk Assessment</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-articles"><strong>Article:</strong> 35</div>
+            <span class="project-link" style="color:var(--slate-light);cursor:default;">Planned</span>
+          </div>
+        </div>
+
+        <!-- P6: DSR / SAR Handling Workflow -->
+        <div class="project-card" data-status="planned">
+          <div class="project-card-top">
+            <div class="project-number">06</div>
+            <span class="project-status-badge status-pending">Planned</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-category">Rights</div>
+            <div class="project-title">DSR / SAR Handling Workflow</div>
+            <div class="project-desc">End-to-end workflow for handling subject access, erasure, and rectification
+              requests, with response templates and an exemptions reference for HealthBridge.</div>
+            <div class="project-deliverables">
+              <div class="deliverable-label">Planned Deliverables</div>
+              <ul class="deliverable-list">
+                <li>DSR process flowchart (draw.io, PDF)</li>
+                <li>SAR response template pack (PDF)</li>
+                <li>DSR log &amp; tracker (Excel)</li>
+              </ul>
+            </div>
+            <div class="project-skills-row">
+              <span class="ps-label">Skills:</span>
+              <span class="ps-tag">DSR Handling</span>
+              <span class="ps-tag">Art. 15</span>
+              <span class="ps-tag">Templates</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-articles"><strong>Articles:</strong> 12, 15, 17</div>
+            <span class="project-link" style="color:var(--slate-light);cursor:default;">Planned</span>
+          </div>
+        </div>
+
+        <!-- P7: Cookie & PECR Compliance Mini-Audit -->
+        <div class="project-card" data-status="planned">
+          <div class="project-card-top">
+            <div class="project-number">07</div>
+            <span class="project-status-badge status-pending">Planned</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-category">Web</div>
+            <div class="project-title">Cookie &amp; PECR Compliance Mini-Audit</div>
+            <div class="project-desc">A focused audit of HealthBridge's website cookies, consent banner, and trackers
+              against UK GDPR consent rules and PECR.</div>
+            <div class="project-deliverables">
+              <div class="deliverable-label">Planned Deliverables</div>
+              <ul class="deliverable-list">
+                <li>Cookie audit sheet (Excel)</li>
+                <li>Consent banner review note (PDF)</li>
+                <li>PECR compliance checklist (PDF)</li>
+              </ul>
+            </div>
+            <div class="project-skills-row">
+              <span class="ps-label">Skills:</span>
+              <span class="ps-tag">Consent</span>
+              <span class="ps-tag">PECR</span>
+              <span class="ps-tag">Cookie Audit</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-articles"><strong>Reg:</strong> PECR · Art. 6, 7</div>
+            <span class="project-link" style="color:var(--slate-light);cursor:default;">Planned</span>
+          </div>
+        </div>
+
+        <!-- P8: Data Breach Tabletop -->
+        <div class="project-card" data-status="planned">
+          <div class="project-card-top">
+            <div class="project-number">08</div>
+            <span class="project-status-badge status-pending">Planned</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-category">Incident</div>
+            <div class="project-title">Data Breach Tabletop</div>
+            <div class="project-desc">A tabletop walkthrough of a HealthBridge data breach, from detection to the
+              Article 33 ICO notification decision, with a short post-incident review.</div>
+            <div class="project-deliverables">
+              <div class="deliverable-label">Planned Deliverables</div>
+              <ul class="deliverable-list">
+                <li>Breach response playbook (PDF)</li>
+                <li>Severity assessment matrix (Excel)</li>
+                <li>Draft ICO notification (PDF)</li>
+              </ul>
+            </div>
+            <div class="project-skills-row">
+              <span class="ps-label">Skills:</span>
+              <span class="ps-tag">Breach Response</span>
+              <span class="ps-tag">Art. 33</span>
+              <span class="ps-tag">ICO Notification</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="project-articles"><strong>Articles:</strong> 33, 34</div>
+            <span class="project-link" style="color:var(--slate-light);cursor:default;">Planned</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- UPDATES / PROGRESS LOG -->
+  <section id="updates">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">Progress Log</div>
+        <h2 class="section-title">What I'm Working On</h2>
+        <p class="section-desc">An honest record of my self-led GDPR work, updated as each milestone is completed.<br>
+          <span style="font-size:12px;color:var(--slate-light);letter-spacing:0.04em;">Updated weekly. Last update:
+            20 May 2026.</span>
+        </p>
+      </div>
+      <div class="updates-layout">
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-dot dot-complete">●</div>
+            <div class="timeline-content">
+              <div class="timeline-date">Project 01 · Data Mapping</div>
+              <div class="timeline-title">Scoping &amp; Methodology</div>
+              <div class="timeline-desc">Set up the HealthBridge scenario, identified the personal data categories
+                collected, and mapped internal and external data flows, including the third-party processors.</div>
+              <span class="timeline-tag tag-complete">Completed</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot dot-complete">●</div>
+            <div class="timeline-content">
+              <div class="timeline-date">Project 01 · Data Mapping</div>
+              <div class="timeline-title">Data Inventory Register — 23 records</div>
+              <div class="timeline-desc">Completed the 23-record Data Inventory Register in Excel. Each record captures
+                lawful basis, Art. 9 conditions, processor details, transfer safeguards, and retention periods.</div>
+              <span class="timeline-tag tag-complete">Completed</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot dot-complete">●</div>
+            <div class="timeline-content">
+              <div class="timeline-date">Project 01 · Data Mapping</div>
+              <div class="timeline-title">Data-flow Diagram &amp; Risk Memo</div>
+              <div class="timeline-desc">Built the data-flow diagram in draw.io and wrote the 2-page Risk &amp; Gap Memo
+                to the DPO, finishing Project 01.</div>
+              <span class="timeline-tag tag-complete">Completed</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot dot-active">▶</div>
+            <div class="timeline-content">
+              <div class="timeline-date">Projects 02–04 · Current</div>
+              <div class="timeline-title">ROPA Register, DPA Review &amp; Transfers</div>
+              <div class="timeline-desc">Now building the Article 30 ROPA register from the inventory, alongside the DPA
+                review pack and the Transfer Impact Assessment — reusing my Teceze DPA and SCC experience.</div>
+              <span class="timeline-tag tag-active">In Progress</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot dot-pending">○</div>
+            <div class="timeline-content">
+              <div class="timeline-date">Project 05 · Next</div>
+              <div class="timeline-title">DPIA — Telehealth Consultation Service</div>
+              <div class="timeline-desc">Next up: a full Data Protection Impact Assessment for HealthBridge's video
+                consultation service, which meets the Art. 35 threshold for large-scale health data.</div>
+              <span class="timeline-tag tag-upcoming">Planned</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="updates-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-card-title">GDPR Articles Applied in Portfolio Work</div>
+            <ul class="gdpr-article-list">
+              <li><span class="article-num">Art. 5</span><span class="article-name">Data Principles</span><span
+                  class="article-check">Applied</span></li>
+              <li><span class="article-num">Art. 6</span><span class="article-name">Lawful Basis</span><span
+                  class="article-check">Applied</span></li>
+              <li><span class="article-num">Art. 9</span><span class="article-name">Special Category Data</span><span
+                  class="article-check">Applied</span></li>
+              <li><span class="article-num">Art. 13</span><span class="article-name">Privacy Notices</span><span
+                  class="article-check">Applied</span></li>
+              <li><span class="article-num">Art. 17</span><span class="article-name">Right to Erasure</span><span
+                  class="article-check">Applied</span></li>
+              <li><span class="article-num">Art. 30</span><span class="article-name">ROPA</span><span
+                  class="article-check">Applied</span></li>
+              <li><span class="article-num">Art. 32</span><span class="article-name">Security</span><span
+                  class="article-check">Applied</span></li>
+              <li><span class="article-num">Art. 35</span><span class="article-name">DPIA</span><span
+                  class="article-check">Applied</span></li>
+              <li><span class="article-num">Art. 44–46</span><span class="article-name">Transfers</span><span
+                  class="article-check">Applied</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-title">My Next 5 Actions</div>
+            <ul class="next-steps">
+              <li>
+                <div class="next-step-num">1</div>Finish the controller &amp; processor ROPA register (Project 04)
+              </li>
+              <li>
+                <div class="next-step-num">2</div>Complete the DPA review checklist &amp; vendor pack (Project 02)
+              </li>
+              <li>
+                <div class="next-step-num">3</div>Draft the Transfer Impact Assessment &amp; SCC mapping (Project 03)
+              </li>
+              <li>
+                <div class="next-step-num">4</div>Publish Project 01 deliverables as downloadable PDFs
+              </li>
+              <li>
+                <div class="next-step-num">5</div>Start the DPIA for the consultation service (Project 05)
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-title">Company Scenario</div>
+            <div style="font-size:12px; color:var(--slate); line-height:1.75;">
+              <strong style="color:var(--navy); display:block; margin-bottom:6px;">HealthBridge Solutions Ltd.</strong>
+              UK telehealth startup · London<br>
+              87 employees · 38,000 patients<br>
+              Processes special category health data<br>
+              10 third-party vendors (7 US-based)<br>
+              B2C video consultation service<br>
+              <span
+                style="display:inline-block; margin-top:8px; font-size:10px; background:var(--amber-bg); color:var(--amber); padding:3px 8px; border-radius:2px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase;">Fictional
+                · For Portfolio Use</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Deepak N — Privacy Portfolio</div>
+      <div class="footer-desc">Actively Exploring Data Privacy Roles · GDPR & UK GDPR · Chennai, India ·
+        16deepakraja@gmail.com</div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#walkthroughs">Walkthroughs</a>
+        <a href="#projects">Projects</a>
+        <a href="#updates">Progress</a>
+        <a href="https://linkedin.com/in/deepak-n-399711298" target="_blank">LinkedIn</a>
+        <!-- TODO: add real GitHub URL or remove link -->
+      </div>
+      <div class="footer-copy">A self-led GDPR / UK GDPR portfolio · All company scenarios are fictional · Deepak N
+        © 2026<br>
+        <span style="display:inline-block;margin-top:6px;">Last updated: 20 May 2026 ·
+          16deepakraja@gmail.com · Chennai, India</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── PROJECT FILTER ──
+    function filterCards(status, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (status === 'all' || card.dataset.status === status) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ── SCROLL-ANIMATED BARS ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.dataset.width;
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.progress-mini-fill').forEach(bar => {
+      bar.dataset.width = bar.style.width;
+      bar.style.width = '0%';
+      observer.observe(bar);
+    });
+  </script>
+
+</body>
+
+</html>

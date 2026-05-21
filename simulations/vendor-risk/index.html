@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Due Diligence Worksheet — Art. 28</title>
+</head>
+<body>
+<div class="ss-container" id="app"></div>
+<script src="../../js/sim-shell.js"></script>
+<script>
+SimShell.init({
+  title: 'Vendor Due Diligence Worksheet',
+  article: 'Article 28',
+  sources: [
+    { label: 'ICO — Contracts and liabilities between controllers and processors', href: '#' },
+    { label: 'EDPB Recommendations 01/2020 on supplementary transfer measures', href: '#' },
+    { label: 'European Commission — Standard Contractual Clauses (2021/914)', href: '#' }
+  ],
+  artifact: { label: 'Vendor due-diligence questionnaire (Excel)', href: '#' }
+});
+
+const scenarios = [
+  {
+    id: 1, category: 'DPA Review', difficulty: 'Medium',
+    title: 'Missing DPA with Cloud Provider',
+    desc: 'HealthBridge uses AWS (US-based) to host its patient records database. No Data Processing Agreement has been signed with AWS. Which GDPR obligation is breached, and what is the immediate remediation step?',
+    options: [
+      { text: 'Art. 6 — no lawful basis for cloud storage; delete all data from AWS', correct: false },
+      { text: 'Art. 28(3) — no written DPA in place; execute a DPA with AWS immediately covering all required clauses', correct: true },
+      { text: 'Art. 32 — security measures insufficient; implement encryption', correct: false },
+      { text: 'No breach — cloud providers are exempt from DPA requirements', correct: false }
+    ],
+    explanation: 'Art. 28(3) requires a binding contract (DPA) before a controller can share data with a processor. AWS, as a processor, must sign a DPA containing all mandatory clauses: processing instructions, confidentiality, security, sub-processing rights, assistance with DSRs, deletion/return, and audit rights.',
+    hint: 'Which Article specifically governs controller-processor relationships and requires a written agreement?',
+    article: 'Article 28(3)'
+  },
+  {
+    id: 2, category: 'Transfer Safeguards', difficulty: 'Hard',
+    title: 'US Vendor Post-Schrems II Assessment',
+    desc: 'HealthBridge uses Salesforce (US) as its CRM, storing patient contact data. Post-Schrems II, Privacy Shield is invalidated. The vendor is now certified under the EU-US Data Privacy Framework. What additional step should HealthBridge take before relying solely on the DPF?',
+    options: [
+      { text: 'No further action needed — DPF adequacy decision is sufficient', correct: false },
+      { text: 'Conduct a Transfer Impact Assessment and implement supplementary technical measures (encryption, pseudonymisation)', correct: true },
+      { text: 'Obtain explicit consent from all 38,000 patients for the transfer', correct: false },
+      { text: 'Switch to a UK-based CRM immediately', correct: false }
+    ],
+    explanation: 'While the EU-US DPF provides an adequacy basis, best practice (and EDPB guidance) recommends conducting a Transfer Impact Assessment (TIA) to verify the DPF\'s adequacy for the specific transfer. Supplementary measures (encryption at rest/in transit, access controls, pseudonymisation) add a defence-in-depth layer against government access risks.',
+    hint: 'What does EDPB guidance recommend even when an adequacy mechanism exists?',
+    article: 'Articles 44-46, EDPB Recommendations 01/2020'
+  },
+  {
+    id: 3, category: 'Sub-Processing', difficulty: 'Hard',
+    title: 'Unauthorised Sub-Processor',
+    desc: 'HealthBridge\'s marketing agency (Processor A) has engaged a third-party analytics firm (Processor B) to analyse patient engagement data — without notifying HealthBridge or obtaining written authorisation. What is the GDPR violation and HealthBridge\'s correct response?',
+    options: [
+      { text: 'No violation — the agency can share data with sub-contractors freely', correct: false },
+      { text: 'Art. 28(2) violation — unauthorised sub-processing; instruct Processor A to immediately cease sharing and either obtain retroactive authorisation or terminate the arrangement', correct: true },
+      { text: 'Art. 17 violation — data should be erased from the analytics firm', correct: false },
+      { text: 'Notify the ICO immediately as this is a mandatory breach notification', correct: false }
+    ],
+    explanation: 'Art. 28(2) prohibits processors from engaging sub-processors without the controller\'s prior specific or general written authorisation. HealthBridge must instruct the agency to cease, assess whether personal data was adequately protected during the unauthorised sharing, document the incident in the breach register (even if below notification threshold), and update contracts to prevent recurrence.',
+    hint: 'Art. 28(2) — what must a processor obtain before engaging a sub-processor?',
+    article: 'Article 28(2)'
+  },
+  {
+    id: 4, category: 'Vendor Due Diligence', difficulty: 'Medium',
+    title: 'Vendor Security Assessment',
+    desc: 'HealthBridge is onboarding a new telehealth vendor that will process special category health data. Which security certification or evidence should HealthBridge require as a minimum to satisfy Art. 32?',
+    options: [
+      { text: 'A self-assessment security questionnaire completed by the vendor', correct: false },
+      { text: 'ISO 27001 certification or equivalent independent security audit report demonstrating technical and organisational security measures', correct: true },
+      { text: 'A letter from the vendor\'s CEO confirming security measures are in place', correct: false },
+      { text: 'GDPR compliance certification from any EU member state authority', correct: false }
+    ],
+    explanation: 'Art. 32 requires both controllers and processors to implement "appropriate technical and organisational measures." For special category health data, this means requiring demonstrable, independently verified security (ISO 27001, SOC 2 Type II, DSPT compliance). Self-attestation is insufficient — the controller remains liable and must audit/verify processor security under Art. 28(3)(h).',
+    hint: 'Art. 32 requires "appropriate" measures — how do you verify a processor\'s security is appropriate?',
+    article: 'Article 32, Article 28(3)(h)'
+  },
+  {
+    id: 5, category: 'SCC Gap Analysis', difficulty: 'Hard',
+    title: 'Standard Contractual Clauses Review',
+    desc: 'HealthBridge uses the 2010 EU SCCs with a US-based data analytics vendor. Following the CJEU Schrems II ruling and the 2021 updated SCCs, what action is required?',
+    options: [
+      { text: 'No action needed — old SCCs remain valid indefinitely', correct: false },
+      { text: 'Replace 2010 SCCs with 2021 EU SCCs (Module 2 Controller-to-Processor) before the deadline, conduct a TIA, and update all associated documentation', correct: true },
+      { text: 'Add an addendum to the existing SCCs acknowledging Schrems II', correct: false },
+      { text: 'Switch to BCRs as SCCs are no longer valid', correct: false }
+    ],
+    explanation: 'The European Commission replaced the 2010 SCCs with updated 2021 SCCs (Decision 2021/914) to address Schrems II concerns. Old SCCs became invalid for new contracts from September 2021 and for existing contracts from December 2022. HealthBridge must execute Module 2 (Controller-to-Processor), conduct a Transfer Impact Assessment, and document supplementary measures.',
+    hint: 'When did the 2021 SCCs become mandatory for existing contracts?',
+    article: 'Articles 46(2)(c), Commission Decision 2021/914'
+  },
+  {
+    id: 6, category: 'Vendor Termination', difficulty: 'Medium',
+    title: 'End of Contract Data Deletion',
+    desc: 'HealthBridge terminates its contract with a cloud storage vendor. Under Art. 28(3)(g), what must the vendor do with HealthBridge\'s patient data after termination?',
+    options: [
+      { text: 'Retain data for 12 months in case HealthBridge needs it', correct: false },
+      { text: 'Delete or return all personal data to HealthBridge and delete existing copies, unless required by Union or Member State law', correct: true },
+      { text: 'Archive data in cold storage at no charge for 3 years', correct: false },
+      { text: 'The vendor can decide its own data retention policy post-termination', correct: false }
+    ],
+    explanation: 'Art. 28(3)(g) is explicit: at the choice of the controller, the processor must delete or return all personal data after the end of service provision and delete existing copies — unless law requires storage. HealthBridge should request written confirmation of deletion (or a data return) and a deletion certificate as part of contract termination procedures.',
+    hint: 'Art. 28(3)(g) — what happens to personal data at the end of a processing contract?',
+    article: 'Article 28(3)(g)'
+  },
+  {
+    id: 7, category: 'Risk Classification', difficulty: 'Easy',
+    title: 'High-Risk Vendor Classification',
+    desc: 'HealthBridge is assessing its 10 vendors using a risk matrix. Which vendor profile presents the HIGHEST privacy risk requiring enhanced due diligence?',
+    options: [
+      { text: 'UK-based stationery supplier processing employee names for delivery', correct: false },
+      { text: 'US-based AI diagnostics company processing 38,000 patient health records with automated decision-making', correct: true },
+      { text: 'EU-based payroll processor handling employee salary data with ISO 27001 certification', correct: false },
+      { text: 'UK-based virtual receptionist handling appointment booking only', correct: false }
+    ],
+    explanation: 'The US-based AI diagnostics vendor presents maximum risk: (1) US jurisdiction post-Schrems II transfer risk, (2) special category health data (Art. 9), (3) large scale processing (38,000 patients), (4) automated decision-making (Art. 22 DPIA trigger), (5) Art. 35(3) mandatory DPIA requirement. This vendor demands the most intensive due diligence, DPA scrutiny, TIA, and ongoing monitoring.',
+    hint: 'Consider: data sensitivity, volume, transfer risk, and automated processing.',
+    article: 'Articles 9, 22, 28, 35, 44-46'
+  }
+];
+
+let current = 0, answered = [], selectedOpt = null;
+
+function render() {
+  const s = scenarios[current];
+  const isA = answered[current] !== undefined;
+  const cc = answered.filter((a, i) => scenarios[i].options[a]?.correct).length;
+  const ac = answered.filter(a => a !== undefined).length;
+
+  let dots = '<div class="ss-progress">';
+  scenarios.forEach((_, i) => {
+    dots += `<div class="ss-progress-dot ${answered[i] !== undefined ? 'done' : i === current ? 'active' : ''}"></div>`;
+  });
+  dots += '</div>';
+
+  let h = `
+    <div class="ss-hero">
+      <div class="ss-hero-eyebrow">Vendor Due Diligence Worksheet</div>
+      <h2>Third-Party Privacy Risk Assessment</h2>
+      <p>Evaluate vendor relationships, DPA obligations, transfer safeguards, and sub-processor controls across HealthBridge's supply chain.</p>
+    </div>
+    <div class="ss-stats">
+      <div class="ss-stat"><div class="ss-stat-val">${current+1}/${scenarios.length}</div><div class="ss-stat-lbl">Vendor</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${cc}</div><div class="ss-stat-lbl">Correct</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${ac}</div><div class="ss-stat-lbl">Assessed</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${SimShell.score}</div><div class="ss-stat-lbl">Score</div></div>
+    </div>
+    ${dots}
+    <div class="ss-card">
+      <div class="ss-card-hd">
+        <h3><i class="fa-solid fa-building-shield" style="color:#2563eb"></i> Vendor ${s.id}: ${s.title}</h3>
+        <div style="display:flex;gap:0.5rem">
+          <span class="ss-badge ss-badge-blue">${s.category}</span>
+          <span class="ss-badge ${s.difficulty==='Easy'?'ss-badge-green':s.difficulty==='Medium'?'ss-badge-amber':'ss-badge-red'}">${s.difficulty}</span>
+        </div>
+      </div>
+      <div class="ss-card-bd">
+        <p style="margin-bottom:1rem;font-size:0.95rem;line-height:1.7">${s.desc}</p>
+        <div style="font-size:0.75rem;color:#64748b;margin-bottom:0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em">Select the correct action:</div>
+        <div class="ss-radio-group">`;
+
+  s.options.forEach((o, i) => {
+    let cls = '';
+    if (isA) { cls = o.correct ? 'correct' : (answered[current] === i && !o.correct ? 'incorrect' : ''); }
+    h += `<label class="ss-radio ${cls}" ${isA ? '' : `onclick="selectOption(${i})"`}>
+      <input type="radio" name="q" ${isA ? 'disabled' : ''} ${answered[current] === i ? 'checked' : ''}> ${o.text}
+    </label>`;
+  });
+
+  h += `</div>
+        <div class="ss-hint ${SimShell.mode==='learning'&&!isA?'visible':''}" id="hint"><i class="fa-solid fa-lightbulb" style="color:#d97706;margin-right:0.4rem"></i> <strong>Hint:</strong> ${s.hint}</div>`;
+
+  if (isA) {
+    const ok = s.options[answered[current]]?.correct;
+    h += `<div class="ss-feedback ${ok ? 'ss-feedback-correct' : 'ss-feedback-incorrect'}">
+      <strong>${ok ? '✓ Correct!' : '✗ Incorrect'}</strong><br>
+      ${s.explanation}<br>
+      <span style="font-size:0.8rem;opacity:0.8;margin-top:0.5rem;display:block">Reference: <strong>${s.article}</strong></span>
+    </div>`;
+  }
+
+  h += `</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:1rem">
+      <button class="ss-btn ss-btn-outline" ${current===0?'disabled':''} onclick="nav(-1)"><i class="fa-solid fa-arrow-left"></i> Previous</button>`;
+
+  if (!isA) {
+    h += `<button class="ss-btn ss-btn-primary" id="submitBtn" disabled onclick="submitAnswer()">Submit Assessment</button>`;
+  } else if (current < scenarios.length - 1) {
+    h += `<button class="ss-btn ss-btn-primary" onclick="nav(1)">Next Vendor <i class="fa-solid fa-arrow-right"></i></button>`;
+  } else {
+    h += `<button class="ss-btn ss-btn-success" onclick="showResults()"><i class="fa-solid fa-trophy"></i> View Results</button>`;
+  }
+
+  h += '</div>';
+  document.getElementById('app').innerHTML = h;
+}
+
+function selectOption(i) {
+  if (answered[current] !== undefined) return;
+  selectedOpt = i;
+  document.querySelectorAll('.ss-radio').forEach((r, x) => {
+    r.classList.toggle('selected', x === i);
+    r.querySelector('input').checked = x === i;
+  });
+  const btn = document.getElementById('submitBtn');
+  if (btn) btn.disabled = false;
+}
+
+function submitAnswer() {
+  if (selectedOpt === null) return;
+  answered[current] = selectedOpt;
+  SimShell.updateScore(scenarios[current].options[selectedOpt].correct ? 6 : -3);
+  selectedOpt = null;
+  render();
+}
+
+function nav(d) {
+  current = Math.max(0, Math.min(scenarios.length - 1, current + d));
+  selectedOpt = null;
+  render();
+}
+
+function showResults() {
+  const cc = answered.filter((a, i) => scenarios[i].options[a]?.correct).length;
+  const pct = Math.round((cc / scenarios.length) * 100);
+  const grade = pct >= 90 ? 'Third-Party Risk Lead' : pct >= 70 ? 'Vendor Risk Analyst' : pct >= 50 ? 'Junior Compliance Reviewer' : 'Needs Development';
+  document.getElementById('app').innerHTML = `
+    <div class="ss-hero">
+      <div class="ss-hero-eyebrow">Assessment Complete</div>
+      <h2>Vendor Due Diligence — Results</h2>
+      <p>Review your vendor risk and third-party compliance performance.</p>
+    </div>
+    <div class="ss-stats">
+      <div class="ss-stat"><div class="ss-stat-val" style="color:#059669">${cc}/${scenarios.length}</div><div class="ss-stat-lbl">Correct</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${pct}%</div><div class="ss-stat-lbl">Accuracy</div></div>
+      <div class="ss-stat"><div class="ss-stat-val">${SimShell.score}</div><div class="ss-stat-lbl">Score</div></div>
+      <div class="ss-stat"><div class="ss-stat-val" style="font-size:1rem">${grade}</div><div class="ss-stat-lbl">Level Assessed</div></div>
+    </div>
+    <div class="ss-card">
+      <div class="ss-card-hd"><h3><i class="fa-solid fa-clipboard-check" style="color:#059669"></i> Vendor Assessment Breakdown</h3></div>
+      <div class="ss-card-bd">
+        ${scenarios.map((s, i) => {
+          const ok = s.options[answered[i]]?.correct;
+          return `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid #f1f5f9;font-size:0.9rem">
+            <div><strong>${s.id}.</strong> ${s.title} <span class="ss-badge ss-badge-blue" style="margin-left:0.5rem">${s.category}</span></div>
+            <span class="ss-badge ${ok ? 'ss-badge-green' : 'ss-badge-red'}">${ok ? 'Correct' : 'Incorrect'}</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1rem">
+      <button class="ss-btn ss-btn-outline" onclick="location.reload()"><i class="fa-solid fa-rotate-right"></i> Retry</button>
+      <a href="../../portfolio.html" class="ss-btn ss-btn-primary" style="text-decoration:none"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+    </div>`;
+}
+
+render();
+</script>
+</body>
+</html>
