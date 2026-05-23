@@ -8,7 +8,8 @@
       "PowerShell(\\(Get-Content \"D:\\\\protfolio\\\\simulations\\\\data-mapping\\\\index.html\" | Measure-Object -Line\\).Lines)",
       "mcp__Claude_in_Chrome__tabs_context_mcp",
       "PowerShell(python --version)",
-      "PowerShell(try { Get-Process -Id 2652 -ErrorAction Stop | Select-Object ProcessName, Path, Id } catch { \"Process not found or access denied: $_\" })"
+      "PowerShell(try { Get-Process -Id 2652 -ErrorAction Stop | Select-Object ProcessName, Path, Id } catch { \"Process not found or access denied: $_\" })",
+      "Bash(git add *)"
     ]
   }
 }

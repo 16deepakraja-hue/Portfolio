@@ -361,6 +361,31 @@ const SimShell = {
       }
       .ss-artifact-btn:hover{background:#1c3060;transform:translateY(-1px)}
       @media(max-width:680px){.ss-refs-inner{grid-template-columns:1fr}.ss-refs-artifact{border-left:none;padding-left:0;border-top:1px solid #f1f5f9;padding-top:1rem}}
+
+      /* ── MOBILE (≤ 600px) ── */
+      @media(max-width:600px){
+        .ss-nav{padding:0 1rem;height:52px}
+        .ss-logo-sub{display:none}
+        .ss-breadcrumb{display:none}
+        .ss-nav-right{gap:0.5rem}
+        .ss-score-pill{font-size:10px;padding:4px 10px;min-width:64px;letter-spacing:0.03em}
+        .ss-back-btn{padding:5px 10px;font-size:10px;letter-spacing:0}
+        .ss-module-banner{padding:4px 1rem}
+        .ss-container{padding:1.25rem 1rem}
+        .ss-hero{padding:1.5rem 1.25rem}
+        .ss-hero h2{font-size:1.3rem}
+        .ss-hero p{font-size:0.85rem}
+        .ss-card-hd{padding:0.75rem 1rem}
+        .ss-card-bd{padding:1rem}
+        .ss-btn{padding:0.7rem 1rem;font-size:13px;min-height:44px}
+        .ss-radio{padding:0.75rem 0.9rem}
+        .ss-refs{padding:0}
+        .ss-refs-inner{padding:1rem}
+        .ss-shell-footer{padding:12px 1rem;flex-direction:column;gap:6px;text-align:center}
+      }
+      @media(max-width:380px){
+        .ss-score-pill{display:none}
+      }
     `;
     document.head.appendChild(s);
 
