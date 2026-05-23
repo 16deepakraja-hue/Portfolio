@@ -1683,6 +1683,55 @@
         .sw-weakness { background: var(--danger-bg); color: #7f1d1d; border: 1px solid rgba(239,68,68,0.2); }
         [data-theme="dark"] .sw-strength { color: #6ee7b7; }
         [data-theme="dark"] .sw-weakness { color: #fca5a5; }
+
+        /* ── MOBILE (≤ 600px) ── */
+        @media (max-width: 600px) {
+            /* Navbar */
+            .navbar { padding: 0.75rem 1rem; }
+            .navbar h1 { font-size: 0.95rem; letter-spacing: 0; }
+            .navbar-brand i { font-size: 1.1rem; }
+            .nav-links { display: none; }
+            .user-profile { display: none; }
+            .nav-controls { gap: 0.6rem; }
+
+            /* Container */
+            .container { padding: 1rem; }
+
+            /* Modals — full-width, scrollable */
+            .modal-content {
+                padding: 1.25rem;
+                width: 95%;
+                max-height: 88vh;
+                overflow-y: auto;
+            }
+
+            /* Cards */
+            .card-header { padding: 0.85rem 1rem; }
+            .card-body { padding: 1rem; }
+
+            /* Typography */
+            h2 { font-size: 1.3rem; }
+            p.subtitle { font-size: 0.9rem; margin-bottom: 1.25rem; }
+
+            /* Buttons — minimum 44px tap targets */
+            .btn { min-height: 44px; padding: 0.6rem 1rem; font-size: 0.875rem; }
+
+            /* Grid — collapse 2-col grids to single column */
+            .grid-2 { grid-template-columns: 1fr; gap: 0.875rem; }
+            .grid-4 { grid-template-columns: 1fr; gap: 0.875rem; }
+
+            /* Tables — tighter cell padding */
+            th { padding: 0.5rem 0.65rem; font-size: 0.7rem; }
+            td { padding: 0.6rem 0.65rem; font-size: 0.8rem; }
+
+            /* Workshop sidebar */
+            .workshop-layout { gap: 1rem; }
+        }
+
+        @media (max-width: 400px) {
+            .container { padding: 0.75rem; }
+            .modal-content { width: 98%; padding: 1rem; }
+        }
     </style>
 </head>
 
