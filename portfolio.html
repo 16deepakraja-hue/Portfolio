@@ -588,11 +588,7 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .wt-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
+    /* .wt-grid base rule defined in the additions block below (repeat(3,1fr) — 3-column layout) */
 
     .wt-card {
       background: var(--white);
@@ -628,6 +624,44 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Image-backed preview (used on completed walkthrough cards) */
+    .wt-preview.has-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Subtle dark gradient at the bottom so the icon/text overlay still reads premium */
+    .wt-preview.has-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10, 22, 40, 0) 50%, rgba(10, 22, 40, 0.55) 100%);
+      pointer-events: none;
+    }
+
+    /* Icon repositioned as a small navy/gold badge on top of the image */
+    .wt-preview.has-image > i {
+      position: absolute;
+      left: 12px;
+      bottom: 10px;
+      font-size: 14px;
+      color: var(--gold-light);
+      background: rgba(10, 22, 40, 0.65);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      border-radius: 999px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      backdrop-filter: blur(4px);
     }
 
     .wt-body {
@@ -1256,6 +1290,46 @@
       }
     }
 
+    /* ── INLINE DELIVERABLE DOWNLOAD LINKS ── */
+    .deliverable-dl {
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      gap: 5px;
+      transition: color 0.2s;
+    }
+
+    .deliverable-dl:hover {
+      color: var(--navy);
+    }
+
+    .dl-badge {
+      margin-left: auto;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1px 5px;
+      border-radius: 2px;
+      background: rgba(10, 22, 40, 0.07);
+      color: var(--slate-light);
+      flex-shrink: 0;
+    }
+
+    .deliverable-dl:hover .dl-badge {
+      background: var(--navy);
+      color: var(--gold);
+    }
+
+    /* ── WALKTHROUGH GRID — 3-column (original) ── */
+    .wt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
     /* Animate on load */
     @keyframes fadeUp {
       from {
@@ -1472,9 +1546,10 @@
       <div class="wt-grid">
 
         <div class="wt-card">
-          <div class="wt-preview" aria-hidden="true">
-            <i class="fa-solid fa-map-location-dot"></i>
-            <span>Preview image to add</span>
+          <div class="wt-preview has-image">
+            <img src="assets/walkthroughs/data-mapping-preview.png"
+                 alt="Data Mapping Walkthrough — Article 30 overview with HealthBridge data flow diagram" />
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
           </div>
           <div class="wt-body">
             <div class="wt-article">Article 30</div>
@@ -1673,23 +1748,34 @@
           </div>
         </div>
 
-        <!-- P5: DPIA — Telehealth Consultation Service -->
-        <div class="project-card" data-status="planned">
+        <!-- P5: DPIA — Telehealth Consultation Service · COMPLETE -->
+        <div class="project-card" data-status="complete">
           <div class="project-card-top">
             <div class="project-number">05</div>
-            <span class="project-status-badge status-pending">Planned</span>
+            <span class="project-status-badge status-complete">Complete</span>
           </div>
           <div class="project-card-body">
             <div class="project-category">Risk</div>
             <div class="project-title">DPIA — Telehealth Consultation Service</div>
-            <div class="project-desc">A full Data Protection Impact Assessment for HealthBridge's video consultation
-              service, which processes special-category health data at scale and meets the Article 35 threshold.</div>
+            <div class="project-desc">A full Article 35 UK GDPR impact assessment for HealthBridge's telehealth platform, processing special-category health data at scale across seven international processors. Covers high-risk identification, vendor review, and transfer safeguards.</div>
             <div class="project-deliverables">
-              <div class="deliverable-label">Planned Deliverables</div>
+              <div class="deliverable-label">Deliverables</div>
               <ul class="deliverable-list">
-                <li>DPIA screening checklist (PDF)</li>
-                <li>Full DPIA report (PDF)</li>
-                <li>Risk register (Excel)</li>
+                <li>
+                  <a href="assets/deliverables/dpia/DPIA-Screening-Checklist.docx" download class="deliverable-dl">
+                    DPIA Screening Checklist <span class="dl-badge">DOCX</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="assets/deliverables/dpia/DPIA-HealthBridge-Telehealth.docx" download class="deliverable-dl">
+                    DPIA Assessment Report <span class="dl-badge">DOCX</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="assets/deliverables/dpia/DPIA-Risk-Register-HealthBridge.xlsx" download class="deliverable-dl">
+                    DPIA Risk Register <span class="dl-badge">XLSX</span>
+                  </a>
+                </li>
               </ul>
             </div>
             <div class="project-skills-row">
@@ -1697,11 +1783,11 @@
               <span class="ps-tag">DPIA</span>
               <span class="ps-tag">Art. 35</span>
               <span class="ps-tag">Risk Assessment</span>
+              <span class="ps-tag">Art. 9</span>
             </div>
           </div>
           <div class="project-footer">
-            <div class="project-articles"><strong>Article:</strong> 35</div>
-            <span class="project-link" style="color:var(--slate-light);cursor:default;">Planned</span>
+            <div class="project-articles"><strong>Articles:</strong> 35, 36, 9</div>
           </div>
         </div>
 
@@ -1864,12 +1950,21 @@
           </div>
 
           <div class="timeline-item">
+            <div class="timeline-dot dot-complete">●</div>
+            <div class="timeline-content">
+              <div class="timeline-date">Project 05 · DPIA</div>
+              <div class="timeline-title">DPIA — Telehealth Consultation Service</div>
+              <div class="timeline-desc">Completed the full Article 35 impact assessment for HealthBridge's telehealth platform. Five screening criteria triggered the DPIA: AI-generated clinical summaries, large-scale health data, vulnerable subjects (incl. children), data combination via GP Connect, and breach-safety risk. Fourteen risks assessed; all reduced to Low or accepted Medium residual risk. No Article 36 ICO prior consultation required. Deliverables: screening checklist, full DPIA report, and Excel risk register.</div>
+              <span class="timeline-tag tag-complete">Completed</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
             <div class="timeline-dot dot-pending">○</div>
             <div class="timeline-content">
-              <div class="timeline-date">Project 05 · Next</div>
-              <div class="timeline-title">DPIA — Telehealth Consultation Service</div>
-              <div class="timeline-desc">Next up: a full Data Protection Impact Assessment for HealthBridge's video
-                consultation service, which meets the Art. 35 threshold for large-scale health data.</div>
+              <div class="timeline-date">Projects 06–08 · Next</div>
+              <div class="timeline-title">DSR Workflow, Cookie Audit &amp; Breach Tabletop</div>
+              <div class="timeline-desc">Next phase: the data-subject rights handling workflow (Art. 12–22), a PECR cookie compliance mini-audit, and an Article 33 breach tabletop exercise for HealthBridge.</div>
               <span class="timeline-tag tag-upcoming">Planned</span>
             </div>
           </div>
