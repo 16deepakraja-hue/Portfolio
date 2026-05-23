@@ -1455,7 +1455,7 @@
       }
 
       .section-title {
-        font-size: 26px;
+        font-size: 22px;
       }
 
       .section-desc {
@@ -1524,7 +1524,10 @@
     }
 
     @media (max-width: 900px) {
-      .wt-grid { gap: 14px; }
+      .wt-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
     }
 
     /* Animate on load */
