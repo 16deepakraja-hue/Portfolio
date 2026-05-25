@@ -1801,9 +1801,21 @@
             .toast-container { right: 0.75rem; left: 0.75rem; bottom: 1rem; }
             .toast { max-width: 100%; font-size: 0.85rem; padding: 0.75rem 1rem; }
 
-            /* Tooltips — not touch-friendly; suppress on mobile */
+            /* Tooltips — CSS hover suppressed on mobile; JS floating popup handles tap */
             .tooltip-trigger .tooltip-box { display: none !important; }
             .gdpr-tip::after { display: none !important; }
+            /* Larger tap target for ? icons */
+            .gdpr-tip {
+                width: 22px;
+                height: 22px;
+                font-size: 11px;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .tooltip-trigger {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
 
             /* ── Inline-style grid overrides (require !important) ── */
             /* 5-col ROPA summary metrics → 2-col */
@@ -4960,6 +4972,108 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+
+    <!-- ── Mobile-friendly tooltip system ──
+         Desktop: CSS :hover unchanged.
+         Mobile/click: JS floating popup, viewport-clamped, tap-outside-to-close. -->
+    <script>
+    (function () {
+        // Shared floating popup element
+        var popup = document.createElement('div');
+        popup.id = 'gdpr-tip-popup';
+        var ps = popup.style;
+        ps.display        = 'none';
+        ps.position       = 'fixed';
+        ps.zIndex         = '99999';
+        ps.background     = '#0f172a';
+        ps.color          = '#e2e8f0';
+        ps.padding        = '10px 14px';
+        ps.borderRadius   = '6px';
+        ps.fontSize       = '13px';
+        ps.fontWeight     = '400';
+        ps.lineHeight     = '1.55';
+        ps.boxShadow      = '0 4px 20px rgba(0,0,0,0.45)';
+        ps.pointerEvents  = 'none';
+        ps.textAlign      = 'left';
+        ps.wordBreak      = 'break-word';
+        ps.transition     = 'opacity 0.15s ease';
+        document.body.appendChild(popup);
+
+        var currentAnchor = null;
+
+        function getMaxWidth() {
+            return Math.min(280, Math.floor(window.innerWidth * 0.86));
+        }
+
+        function openTip(anchor) {
+            // Resolve tooltip text
+            var text = anchor.getAttribute('data-tip');
+            if (!text) {
+                var box = anchor.querySelector('.tooltip-box');
+                text = box ? (box.textContent || box.innerText || '').trim() : '';
+            }
+            if (!text) return;
+
+            // Set content and max-width before measuring
+            popup.textContent = text;
+            ps.maxWidth  = getMaxWidth() + 'px';
+            ps.display   = 'block';
+
+            var EDGE     = 10;                     // min gap from viewport edge
+            var rect     = anchor.getBoundingClientRect();
+            var pw       = popup.offsetWidth  || getMaxWidth();
+            var ph       = popup.offsetHeight || 60;
+            var vw       = window.innerWidth;
+            var vh       = window.innerHeight;
+
+            // Vertical: prefer above anchor; flip below if too close to top
+            var top = rect.top - ph - 8;
+            if (top < EDGE) { top = rect.bottom + 8; }
+            // Hard clamp bottom
+            if (top + ph > vh - EDGE) { top = Math.max(EDGE, vh - ph - EDGE); }
+
+            // Horizontal: centre on anchor, clamp to viewport
+            var left = rect.left + rect.width / 2 - pw / 2;
+            left = Math.max(EDGE, Math.min(left, vw - pw - EDGE));
+
+            ps.top  = top  + 'px';
+            ps.left = left + 'px';
+
+            currentAnchor = anchor;
+        }
+
+        function closeTip() {
+            ps.display    = 'none';
+            currentAnchor = null;
+        }
+
+        // Single delegated click/tap handler
+        document.addEventListener('click', function (e) {
+            var gdprTip  = e.target.closest ? e.target.closest('.gdpr-tip')         : null;
+            var tooltipT = e.target.closest ? e.target.closest('.tooltip-trigger')  : null;
+            var anchor   = gdprTip || tooltipT;
+
+            if (anchor) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (currentAnchor === anchor) { closeTip(); }
+                else                          { openTip(anchor); }
+                return;
+            }
+
+            // Tap outside any tooltip → close
+            if (currentAnchor) { closeTip(); }
+        }, true);   // capture phase so modal overlays don't swallow it
+
+        // Close when page scrolls (popup position would drift)
+        document.addEventListener('scroll', closeTip, { passive: true, capture: true });
+
+        // Reposition on orientation change / resize
+        window.addEventListener('resize', function () {
+            if (currentAnchor) { openTip(currentAnchor); }
+        });
+    }());
     </script>
 </body>
 
