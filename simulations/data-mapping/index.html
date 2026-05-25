@@ -1688,29 +1688,66 @@
 
         /* ── MOBILE (≤ 600px) ── */
         @media (max-width: 600px) {
-            /* Navbar — prevent brand+controls overflow */
-            .navbar { padding: 0.75rem 1rem; flex-wrap: nowrap; min-width: 0; }
-            .navbar h1 { font-size: 0.875rem; letter-spacing: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
-            .navbar-brand { min-width: 0; gap: 0.4rem; flex-shrink: 1; overflow: hidden; }
+            /* ── Navbar: two-row layout on mobile ──
+               Row 1: back link  |  shield icon  |  title
+               Row 2: mode icon  |  theme icon  |  Guide btn  |  Reset btn        */
+            .navbar {
+                padding: 0.6rem 1rem;
+                flex-wrap: wrap;
+                gap: 0;
+                align-items: center;
+            }
+            /* Row 1 — brand takes its natural width, grows to fill available space */
+            .navbar-brand {
+                flex: 1 1 auto;
+                min-width: 0;
+                overflow: hidden;
+                gap: 0.4rem;
+            }
             .navbar-brand i { font-size: 1rem; flex-shrink: 0; }
-            .navbar-brand a { font-size: 0.72rem; padding: 0.2rem 0.5rem; white-space: nowrap; flex-shrink: 0; }
+            .navbar-brand a {
+                font-size: 0.72rem;
+                padding: 0.2rem 0.5rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            .navbar h1 {
+                font-size: 0.9rem;
+                letter-spacing: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                min-width: 0;
+                flex: 1 1 0;
+            }
+            /* Hide desktop-only nav links and user profile */
             .nav-links { display: none; }
             .user-profile { display: none; }
-            .nav-controls { gap: 0.4rem; flex-shrink: 0; }
+            /* Row 2 — controls always on their own full-width row */
+            .nav-controls {
+                flex: 0 0 100%;
+                display: flex;
+                align-items: center;
+                gap: 0.45rem;
+                padding-top: 0.4rem;
+                margin-top: 0.3rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+            }
             #mode-text { display: none; }
-            .mode-toggle { font-size: 1rem; }
-            /* Guide & Reset buttons — icon-only to save space */
+            .mode-toggle, .theme-toggle { font-size: 1rem; padding: 0 0.2rem; }
+            /* Restore Guide & Reset to labelled buttons (now they have room) */
             .navbar [title="View User Manual"],
             .navbar [title="Restart Workshop"] {
-                font-size: 0;
-                padding: 0.3rem 0.55rem;
+                font-size: 0.78rem;
+                padding: 0.3rem 0.7rem;
                 min-height: unset;
-                width: 34px;
-                height: 34px;
-                justify-content: center;
+                width: auto;
+                height: auto;
             }
             .navbar [title="View User Manual"] i,
-            .navbar [title="Restart Workshop"] i { font-size: 0.9rem; }
+            .navbar [title="Restart Workshop"] i { font-size: 0.82rem; }
 
             /* Container */
             .container { padding: 1rem; }
@@ -1787,9 +1824,8 @@
         @media (max-width: 400px) {
             .container { padding: 0.75rem; }
             .modal-content { width: 98%; padding: 1rem; }
-            /* Hide back link text on very small screens — keep icon nav */
-            .navbar-brand a { display: none; }
-            .navbar h1 { max-width: 140px; }
+            .navbar-brand a { font-size: 0.68rem; padding: 0.15rem 0.4rem; }
+            .navbar h1 { font-size: 0.85rem; }
         }
     </style>
 </head>
