@@ -64,6 +64,8 @@
             color: var(--text-main);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         h1, h2 {
@@ -1686,51 +1688,108 @@
 
         /* ── MOBILE (≤ 600px) ── */
         @media (max-width: 600px) {
-            /* Navbar */
-            .navbar { padding: 0.75rem 1rem; }
-            .navbar h1 { font-size: 0.95rem; letter-spacing: 0; }
-            .navbar-brand i { font-size: 1.1rem; }
+            /* Navbar — prevent brand+controls overflow */
+            .navbar { padding: 0.75rem 1rem; flex-wrap: nowrap; min-width: 0; }
+            .navbar h1 { font-size: 0.875rem; letter-spacing: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+            .navbar-brand { min-width: 0; gap: 0.4rem; flex-shrink: 1; overflow: hidden; }
+            .navbar-brand i { font-size: 1rem; flex-shrink: 0; }
+            .navbar-brand a { font-size: 0.72rem; padding: 0.2rem 0.5rem; white-space: nowrap; flex-shrink: 0; }
             .nav-links { display: none; }
             .user-profile { display: none; }
-            .nav-controls { gap: 0.6rem; }
+            .nav-controls { gap: 0.4rem; flex-shrink: 0; }
+            #mode-text { display: none; }
+            .mode-toggle { font-size: 1rem; }
+            /* Guide & Reset buttons — icon-only to save space */
+            .navbar [title="View User Manual"],
+            .navbar [title="Restart Workshop"] {
+                font-size: 0;
+                padding: 0.3rem 0.55rem;
+                min-height: unset;
+                width: 34px;
+                height: 34px;
+                justify-content: center;
+            }
+            .navbar [title="View User Manual"] i,
+            .navbar [title="Restart Workshop"] i { font-size: 0.9rem; }
 
             /* Container */
             .container { padding: 1rem; }
 
-            /* Modals — full-width, scrollable */
+            /* Modals — full-width, scrollable, no side bleed */
             .modal-content {
                 padding: 1.25rem;
                 width: 95%;
                 max-height: 88vh;
                 overflow-y: auto;
+                overflow-x: hidden;
+                box-sizing: border-box;
             }
 
             /* Cards */
             .card-header { padding: 0.85rem 1rem; }
-            .card-body { padding: 1rem; }
+            .card-body { padding: 1rem; overflow-x: hidden; }
 
             /* Typography */
             h2 { font-size: 1.3rem; }
             p.subtitle { font-size: 0.9rem; margin-bottom: 1.25rem; }
 
-            /* Buttons — minimum 44px tap targets */
+            /* Buttons — tap targets */
             .btn { min-height: 44px; padding: 0.6rem 1rem; font-size: 0.875rem; }
+            /* Navbar buttons stay compact */
+            .navbar .btn { min-height: unset; padding: 0.3rem 0.6rem; font-size: 0.78rem; }
 
-            /* Grid — collapse 2-col grids to single column */
+            /* Named grid classes — collapse to single column */
             .grid-2 { grid-template-columns: 1fr; gap: 0.875rem; }
             .grid-4 { grid-template-columns: 1fr; gap: 0.875rem; }
 
-            /* Tables — tighter cell padding */
+            /* Onboarding actions grid */
+            .onboarding-actions { grid-template-columns: 1fr; }
+            .onboarding-actions .ob-btn.ob-primary { grid-column: span 1; }
+
+            /* Activity detail modal grids */
+            .ropa-preview-bd { grid-template-columns: 1fr; }
+            .ad-grid { grid-template-columns: 1fr; }
+
+            /* DPO metrics (3-col → 2-col is fine; stays readable) */
+            .vs-dpo-grid { grid-template-columns: repeat(2, 1fr); }
+
+            /* Tables — tighter padding */
             th { padding: 0.5rem 0.65rem; font-size: 0.7rem; }
             td { padding: 0.6rem 0.65rem; font-size: 0.8rem; }
 
-            /* Workshop sidebar */
+            /* Workshop layout — single column already at 1024px; reduce gap */
             .workshop-layout { gap: 1rem; }
+
+            /* Toast — anchor to left+right instead of right-only */
+            .toast-container { right: 0.75rem; left: 0.75rem; bottom: 1rem; }
+            .toast { max-width: 100%; font-size: 0.85rem; padding: 0.75rem 1rem; }
+
+            /* Tooltips — not touch-friendly; suppress on mobile */
+            .tooltip-trigger .tooltip-box { display: none !important; }
+            .gdpr-tip::after { display: none !important; }
+
+            /* ── Inline-style grid overrides (require !important) ── */
+            /* 5-col ROPA summary metrics → 2-col */
+            #ropa-summary-metrics { grid-template-columns: repeat(2, 1fr) !important; }
+            /* 3-col "What to look for" grid → 1-col */
+            #vs-wtlf-body > div { grid-template-columns: 1fr !important; }
+            /* Sources & artifact section → stack */
+            #sources-grid { grid-template-columns: 1fr !important; padding: 1rem 1.25rem !important; }
+            #sources-grid > div[style*="border-left"] {
+                border-left: none !important;
+                padding-left: 0 !important;
+                border-top: 1px solid var(--border-color);
+                padding-top: 1rem;
+                margin-top: 0.5rem;
+            }
         }
 
         @media (max-width: 400px) {
             .container { padding: 0.75rem; }
             .modal-content { width: 98%; padding: 1rem; }
+            /* Hide back link text on very small screens — keep icon nav */
+            .navbar-brand a { display: none; }
+            .navbar h1 { max-width: 140px; }
         }
     </style>
 </head>
@@ -2459,7 +2518,7 @@
 
     <!-- Sources & downloadable artifact -->
     <div style="max-width:1100px;margin:2rem auto;padding:0 1.5rem;">
-        <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:1.5rem;background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:10px;padding:1.6rem 1.8rem;">
+        <div id="sources-grid" style="display:grid;grid-template-columns:1.6fr 1fr;gap:1.5rem;background:var(--card-bg,#fff);border:1px solid var(--border,#e2e8f0);border-radius:10px;padding:1.6rem 1.8rem;">
             <div>
                 <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin-bottom:0.75rem;">Sources &amp; Guidance</div>
                 <ul style="margin:0;padding-left:1.1rem;font-size:0.86rem;line-height:1.7;color:var(--text-main);">
